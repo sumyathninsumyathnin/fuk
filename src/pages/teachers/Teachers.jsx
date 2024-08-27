@@ -26,7 +26,7 @@ const Teachers = () => {
   // delete row when click delete
   const handleDelete = (id) => {
     setTeachers(teachers.filter((teacher) => teacher.id !== id));
-  };
+  };  
     
   // Search functionality
   const handleSearchChange = (e) => {

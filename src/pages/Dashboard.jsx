@@ -1,7 +1,79 @@
-import React from 'react'
+import React,{useState} from 'react'
 import Layout from '../components/Layout'
 
-const dashboard = () => {
+const Dashboard = () => {
+
+  const [visibleRows, setVisibleRows] = useState(2);
+
+  const handleTeacherSeeMoreClick = () => {
+    setVisibleRows(visibleRows >= dataOfTeachers.length ? 2 : visibleRows + 2); // Toggle between showing more or less rows
+  };
+
+  const handleStudentSeeMoreClick = () => {
+    setVisibleRows(visibleRows >= dataOfStudents.length ? 2 : visibleRows + 2); // Toggle between showing more or less rows
+  };
+
+  const dataOfTeachers = [
+    {
+      email: "nawlaywar@ucsm.edu.mm",
+      status: "Present",
+      checkInTime: "09:00 AM",
+      additionalInfo: "Department: Computer Science, Location: Room 201",
+    },
+    {
+      email: "myokhaing@ucsm.edu.mm",
+      status: "Present",
+      checkInTime: "09:30 AM",
+      additionalInfo: "Department: Computer Engineering, Location: Room 104",
+    },
+    {
+      email: "yuyuwin@ucsm.edu.mm",
+      status: "Present",
+      checkInTime: "09:00 AM",
+      additionalInfo: "Department: Computer Science, Location: Room 102",
+    },
+    {
+      email: "yiyihliang@ucsm.edu.mm",
+      status: "Present",
+      checkInTime: "09:05 AM",
+      additionalInfo: "Department: Computer Science, Location: Room 101",
+    },
+    
+  ];
+
+  
+  const [expandedRow, setExpandedRow] = useState(null); // State to track expanded row
+  
+  const handleViewClickTeacher = (email) => {
+    setExpandedRow(expandedRow === email ? null : email); // Toggle the expanded state
+  };
+
+  const dataOfStudents = [
+    {
+      mkpt: "6871",
+      status: "Present",
+      checkInTime: "09:40 AM",
+      additionalInfo: "Year: 3rd , Location: Room 201",
+    },
+    {
+      mkpt: "6864",
+      status: "Present",
+      checkInTime: "10:40 AM",
+      additionalInfo: "Year: 3rd , Location: Room 301",
+    },
+    {
+      mkpt: "6800",
+      status: "Present",
+      checkInTime: "09:00 AM",
+      additionalInfo: "Year: 3rd , Location: Room 271",
+    },
+  ];
+
+  const handleViewClickStudent = (mkpt) => {
+    setExpandedRow(expandedRow === mkpt ? null : mkpt); // Toggle the expanded state
+  };
+
+
   return (
     <Layout>
       <div>
@@ -9,11 +81,11 @@ const dashboard = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
           <div className="bg-white p-4 rounded-lg shadow-md transition duration-100 hover:bg-gray-500 hover:text-white">
             <h3 className="text-xl font-bold">Total Teacher</h3>
-            <p className="text-3xl mt-2">150</p>
+            <p className="text-3xl mt-2">{dataOfTeachers.length}</p>
           </div>
           <div className="bg-white p-4 rounded-lg shadow-md transition duration-100 hover:bg-gray-500 hover:text-white">
             <h3 className="text-xl font-bold">Total Student</h3>
-            <p className="text-3xl mt-2">258</p>
+            <p className="text-3xl mt-2">{dataOfStudents.length}</p>
           </div>
           <div className="bg-white p-4 rounded-lg shadow-md transition duration-100 hover:bg-gray-500 hover:text-white">
             <h3 className="text-xl font-bold">Today's Attendance</h3>
@@ -29,6 +101,8 @@ const dashboard = () => {
         <div className='bg-slate-200'>
         <div className="bg-white p-6 rounded-lg shadow-md mb-2">
           <h3 className="text-2xl font-bold mb-4">Today's Attendance Summary</h3>
+
+          {/* for teacher */}
           <table className="w-full text-left">
             <thead>
               <tr>
@@ -39,30 +113,44 @@ const dashboard = () => {
               </tr>
             </thead>
             <tbody>
-              <tr className='rounded-3xl transition duration-100 hover:bg-gray-300 '>
-                <td className="py-2">nawlaywar@ucsm.edu.mm</td>
-                <td className="py-2">Present</td>
-                <td className="py-2">09:00 AM</td>
-                <td className="py-2">
-                  <button className="text-blue-500 hover:underline">View</button>
-                </td>
-              </tr>
-              <tr className='rounded-3xl transition duration-100 hover:bg-gray-300'>
-                <td className="py-2">yiyihlaing@ucsm.edu.mm</td>
-                <td className="py-2">Present</td>
-                <td className="py-2">09:00 AM</td>
-                <td className="py-2">
-                  <button className="text-blue-500 hover:underline">View</button>
-                </td>
-              </tr>
-              {/* Additional rows as needed */}
+              {dataOfTeachers.slice(0, visibleRows).map((row, index) => (
+                <React.Fragment key={index}>
+                  <tr className="rounded-3xl transition duration-100 hover:bg-gray-300">
+                    <td className="py-2">{row.email}</td>
+                    <td className="py-2">{row.status}</td>
+                    <td className="py-2">{row.checkInTime}</td>
+                    <td className="py-2">
+                      <button
+                        className="text-blue-500 hover:underline"
+                        onClick={() => handleViewClickTeacher(row.email)}
+                      >
+                        View
+                      </button>
+                    </td>
+                  </tr>
+                  {expandedRow === row.email && (
+                    <tr className="bg-gray-100">
+                      <td colSpan="4" className="py-4">
+                        <p><strong>Additional Info:</strong> {row.additionalInfo}</p>
+                        {/* Add more detailed information here */}
+                      </td>
+                    </tr>
+                  )}
+                </React.Fragment>
+              ))}
             </tbody>
           </table>
+          {dataOfTeachers.length > 2 && (
           <div className="text-center mt-1">
-            <button className="text-blue-500 hover:underline">See More</button>
+            <button className="text-blue-500 hover:underline"
+              onClick={handleTeacherSeeMoreClick}>
+              {visibleRows >= dataOfTeachers.length ? 'See Less' : 'See More'}
+            </button>
           </div>
+          )}
         </div>
-
+        
+        {/* for students */}
         <div className="bg-white p-6 rounded-lg shadow-md mb-6">
           <table className="w-full text-left">
             <thead>
@@ -74,28 +162,43 @@ const dashboard = () => {
               </tr>
             </thead>
             <tbody>
-              <tr className='rounded-3xl transition duration-100 hover:bg-gray-300'>
-                <td className="py-2">6871</td>
-                <td className="py-2">Present</td>
-                <td className="py-2">09:00 AM</td>
-                <td className="py-2">
-                  <button className="text-blue-500 hover:underline">View</button>
-                </td>
-              </tr>
-              <tr className='rounded-3xl transition duration-100 hover:bg-gray-300'>
-                <td className="py-2">6864</td>
-                <td className="py-2">Present</td>
-                <td className="py-2">09:00 AM</td>
-                <td className="py-2">
-                  <button className="text-blue-500 hover:underline">View</button>
-                </td>
-              </tr>
-              {/* Additional rows as needed */}
+              {dataOfStudents.slice(0, visibleRows).map((row, index) => (
+                <React.Fragment key={index}>
+                <tr className="rounded-3xl transition duration-100 hover:bg-gray-300">
+                  <td className="py-2">{row.mkpt}</td>
+                  <td className="py-2">{row.status}</td>
+                  <td className="py-2">{row.checkInTime}</td>
+                  <td className="py-2">
+                    <button
+                      className="text-blue-500 hover:underline"
+                      onClick={() => handleViewClickStudent(row.mkpt)}
+                    >
+                      View
+                    </button>
+                    </td>
+                  </tr>
+                  {expandedRow === row.mkpt && (
+                    <tr className="bg-gray-100">
+                      <td colSpan="4" className="py-4">
+                        <p><strong>Additional Info:</strong> {row.additionalInfo}</p>
+                        {/* Add more detailed information here */}
+                      </td>
+                    </tr>
+                  )}
+                </React.Fragment>
+              ))}
             </tbody>
           </table>
-          <div className="text-center mt-1">
-            <button className="text-blue-500 hover:underline">See More</button>
-          </div>
+          {dataOfStudents.length > 2 && (
+              <div className="text-center mt-1">
+                <button
+                  className="text-blue-500 hover:underline"
+                  onClick={handleStudentSeeMoreClick}
+                >
+                  {visibleRows >= dataOfStudents.length ? 'See Less' : 'See More'}
+                </button>
+              </div>
+            )}
         </div>
         </div>
 
@@ -115,5 +218,4 @@ const dashboard = () => {
   )
 }
 
-export default dashboard
-
+export default Dashboard

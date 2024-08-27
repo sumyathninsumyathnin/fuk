@@ -1,6 +1,6 @@
 import React ,{useState} from 'react'
 import Layout from '../components/Layout'
-import { IoTrashOutline, IoEyeOutline, IoCheckmarkDoneOutline } from 'react-icons/io5';
+import { IoTrashOutline,  IoCheckmarkDoneOutline } from 'react-icons/io5';
 import { MdOutlineNotificationsActive } from "react-icons/md";
 
 
@@ -20,7 +20,7 @@ const Notifications = () => {
   ]);
 
   // see more 
-  const [loadMore, setLoadMore] = useState(false);
+  // const [loadMore, setLoadMore] = useState(false);
 
   const handleLoadMoreClick = () => {
       if (visibleRows >= notifications.length) {
@@ -113,7 +113,7 @@ const Notifications = () => {
               <div className="flex items-center">
                 {!notification.isRead && (
                   <button
-                    className="text-green-500 hover:underline flex items-center mr-4"
+                    className="text-green-500 pr-9 hover:underline flex items-center mr-4"
                     onClick={() => markAsRead(notification.id)}
                   >
                     <IoCheckmarkDoneOutline className="text-xl mr-1" />
@@ -125,7 +125,7 @@ const Notifications = () => {
                   View Details
                 </button> */}
                 <button 
-                  className="text-red-500 hover:underline flex items-center"
+                  className="text-red-500 pr-6 hover:underline flex items-center"
                   onClick={() => handleDelete(notification.id)}
                 >
                   <IoTrashOutline className="text-xl mr-1" />

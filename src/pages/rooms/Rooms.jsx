@@ -2,7 +2,6 @@ import React ,{useState} from 'react'
 import Layout from '../../components/Layout'
 import { IoAddCircleOutline, IoPencilOutline, IoTrashOutline } from 'react-icons/io5';
 import { MdMeetingRoom } from "react-icons/md";
-import { BiSearchAlt } from 'react-icons/bi';
 import { Link } from 'react-router-dom';
 
 const Rooms = () => {
@@ -88,7 +87,7 @@ const Rooms = () => {
                 <th className="pb-2 border-b-2">Room No</th>
                 <th className="pb-2 border-b-2">Latitudee</th>
                 <th className="pb-2 border-b-2">Longtitudee</th>
-                <th className="pb-2 border-b-2">Actions</th>
+                <th className="pb-2 px-7 border-b-2">Actions</th>
               </tr>
             </thead>
             <tbody>

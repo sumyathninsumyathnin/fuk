@@ -1,7 +1,6 @@
 import React , {useState} from 'react'
 import Layout from '../../components/Layout'
-import { IoAddCircleOutline, IoEyeOutline, IoPencilOutline, IoTrashOutline } from 'react-icons/io5';
-import { BiSearchAlt } from 'react-icons/bi';
+import { IoAddCircleOutline,  IoPencilOutline, IoTrashOutline } from 'react-icons/io5';
 import { LuFileClock } from "react-icons/lu";
 import { Link } from 'react-router-dom';
 
@@ -15,7 +14,7 @@ const Times = () => {
   
   const [times, setTimes] = useState([
     { id:1 ,dayOfWeek: 'monday', startTime: '12:71',endTime :'12:00', room: '56.81',year: '3rd' , trEmail: 'nawlay@ucsm.edu.mm' },
-    { id:2 ,dayOfWeek: 'tuesday', startTime: '68:81',endTime :'12:00', room: '68.52',year: '3rd' , trEmail: 'nawlay@ucsm.edu.mm' },
+    { id:2 ,dayOfWeek: 'tuesday', startTime: '68:81',endTime :'12:30', room: '68.52',year: '3rd' , trEmail: 'nawlay@ucsm.edu.mm' },
     { id:3 ,dayOfWeek: 'wednesday', startTime: '68:64',endTime :'12:00', room: '68.74',year: '3rd' , trEmail: 'nawlay@ucsm.edu.mm' },
     { id:4 ,dayOfWeek: 'friday', startTime: '68:28', endTime :'12:00',room: '68.81',year: '3rd' , trEmail: 'nawlay@ucsm.edu.mm' },
     { id:5 ,dayOfWeek: 'tuesday', startTime: '67:79', endTime :'12:00',room: '20.32',year: '3rd' , trEmail: 'nawlay@ucsm.edu.mm' },
@@ -42,9 +41,12 @@ const Times = () => {
   };
 
   const filteredTimes = times.filter((time) =>
+    time.dayOfWeek.toLowerCase().includes(searchQuery.toLowerCase())||
     time.startTime.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    time.endTime.toLowerCase().includes(searchQuery.toLowerCase()) ||
     time.room.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    time.dayOfWeek.toLowerCase().includes(searchQuery.toLowerCase())
+    time.year.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    time.trEmail.toLowerCase().includes(searchQuery.toLowerCase())
   );
   return (
     <Layout>
@@ -70,6 +72,7 @@ const Times = () => {
                       className="bg-blue-500 text-white px-4 py-2 rounded-lg flex items-center transition duration-100 hover:bg-gray-500 hover:text-white shadow-2xl"
                       onClick={handleSearchClick}
                     >Search</button>
+                    {/* add new time */}
                     <Link to="/dashboard/times/addnewtime">
                       <button className="bg-green-500 text-white px-4 py-2 rounded-lg ml-4 flex items-center transition duration-100 hover:bg-gray-500 hover:text-white shadow-2xl">
                         <IoAddCircleOutline className="text-xl mr-2" />
@@ -77,46 +80,50 @@ const Times = () => {
                       </button>
                     </Link>
                     
-                </div>
-            </header>
+                  </div>  
+                </header>
 
         {/* Timetable List */}
-        <div className="bg-white p-6 rounded-lg shadow-md mb-6">
-          <h3 className="text-2xl font-bold mb-4">Timetable List</h3>
-          <table className="w-full text-left">
-            <thead>
-              <tr>
-                <th className="pb-2 border-b-2">Day of Week</th>
-                <th className="pb-2 border-b-2">Time</th>
-                <th className="pb-2 border-b-2">Room</th>
-                <th className="pb-2 border-b-2">Year</th>
-                <th className="pb-2 border-b-2">Assigned Teacher's Email</th>
-                <th className="pb-2 border-b-2">Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              {filteredTimes.slice(0, visibleRows).map((room) => (
-                <tr key={room.dayOfWeek} className="rounded-3xl transition duration-100 hover:bg-gray-100">
-                  <td className="py-2">{room.dayOfWeek}</td>
-                  <td className="py-2">{room.startTime}</td>
-                  <td className="py-2">{room.room}</td>
-                  <td className="px-7 py-2 flex">
-                    <Link to="/dashboard/students/editstudent">
-                      <button className="pr-8 text-green-500 hover:underline flex items-center mr-4">
-                        <IoPencilOutline className="text-xl mr-1" />
-                        Edit
-                      </button>
-                    </Link>
-                    <button
-                      className="text-red-500 hover:underline flex items-center"
-                      onClick={() => handleDelete(room.dayOfWeek)}
-                    >
-                      <IoTrashOutline className="text-xl mr-1" />
-                      Delete
-                    </button>
-                  </td>
-                </tr>
-              ))}
+            <div className="bg-white p-6 rounded-lg shadow-md mb-6">
+              <h3 className="text-2xl font-bold mb-4">Timetable List</h3>
+              <table className="w-full text-left">
+                <thead>
+                  <tr>
+                    <th className="pb-2 border-b-2">Day of Week</th>
+                    <th className="pb-2 px-4 text-center border-b-2">Time</th>
+                    <th className="pb-2 border-b-2">Room</th>
+                    <th className="pb-2 px-2 border-b-2">Year</th>
+                    <th className="pb-2 pl-2 border-b-2">Assigned Teacher's Email</th>
+                    <th className="pb-2 px-7 border-b-2">Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {filteredTimes.slice(0, visibleRows).map((time) => (
+                    <tr key={time.id} className="rounded-3xl transition duration-100 hover:bg-gray-100">
+                      <td className="py-2">{time.dayOfWeek}</td>
+                      <td className="py-2 px-4 text-center">{time.startTime} - {time.endTime}</td>
+                      <td className="py-2 ">{time.room}</td>
+                      <td className="py-2 px-2">{time.year}</td>
+                      <td className="py-2 pl-2">{time.trEmail}</td>
+                      <td className="px-7 py-2 flex">
+                        <Link to="/dashboard/times/edittime">
+                          <button className="pr-8 text-green-500 hover:underline flex items-center mr-4">
+                            <IoPencilOutline className="text-xl mr-1" />
+                            Edit
+                          </button>
+                        </Link>
+                        <button
+                          className="text-red-500 hover:underline flex items-center"
+                          onClick={() => handleDelete(time.id)}
+                        >
+                          <IoTrashOutline className="text-xl mr-1" />
+                          Delete
+                        </button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
               
               {/* <tr className="rounded-3xl transition duration-100 hover:bg-gray-100">
                 <td className="py-2">Monday</td>
@@ -163,8 +170,7 @@ const Times = () => {
               
                 </>
               )} */}
-            </tbody>
-          </table>
+            
 
           {/* Pagination/See More */}
           {filteredTimes.length > 4 && (
