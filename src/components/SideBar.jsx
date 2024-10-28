@@ -7,7 +7,6 @@ import { MdMeetingRoom } from "react-icons/md";
 import { LuFileClock } from "react-icons/lu";
 import { MdLogout } from "react-icons/md";
 import { Link } from 'react-router-dom';
-import { MdOutlineNotificationsActive } from "react-icons/md";
 import { TbSquareRoundedLetterF } from "react-icons/tb";
 import { useNavigate } from 'react-router-dom';
 
@@ -55,12 +54,12 @@ const SideBar = () => {
                         <p className="text-lg text-right px-5 py-5 rounded-lg font-medium ">Time</p>
                     </li>
                     </Link>
-                    <Link to="/dashboard/notifications">
+                    {/* <Link to="/dashboard/notifications">
                         <li className='bg-gray-100 text-black-400 my-4 px-4 rounded-lg flex  justify-start items-center w-52 h-12 transition duration-100 hover:bg-gray-500 hover:text-white shadow-2xl cursor-pointer'>
                         <MdOutlineNotificationsActive className='text-2xl'/>
                         <p className="text-lg text-right px-5 py-5 rounded-lg font-medium ">Notifications</p>
                     </li>
-                    </Link>
+                    </Link> */}
                     
                     <li className='bg-gray-100 text-black-400 my-4 px-4 rounded-lg flex  justify-start items-center w-52 h-12 transition duration-100 hover:bg-gray-500 hover:text-white shadow-2xl cursor-pointer' onClick={handleLogout}>
                         <MdLogout className='text-2xl'/>

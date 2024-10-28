@@ -38,6 +38,24 @@ const Dashboard = () => {
       checkInTime: "09:05 AM",
       additionalInfo: "Department: Computer Science, Location: Room 101",
     },
+    {
+      email: "yiyihliang@ucsm.edu.mm",
+      status: "Present",
+      checkInTime: "09:05 AM",
+      additionalInfo: "Department: Computer Science, Location: Room 101",
+    },
+    {
+      email: "yiyihliang@ucsm.edu.mm",
+      status: "Present",
+      checkInTime: "09:05 AM",
+      additionalInfo: "Department: Computer Science, Location: Room 101",
+    },
+    {
+      email: "yiyihliang@ucsm.edu.mm",
+      status: "Present",
+      checkInTime: "09:05 AM",
+      additionalInfo: "Department: Computer Science, Location: Room 101",
+    },
     
   ];
 
@@ -66,6 +84,24 @@ const Dashboard = () => {
       status: "Present",
       checkInTime: "09:00 AM",
       additionalInfo: "Year: 3rd , Location: Room 271",
+    },
+    {
+      mkpt: "6871",
+      status: "Present",
+      checkInTime: "09:40 AM",
+      additionalInfo: "Year: 3rd , Location: Room 201",
+    },
+    {
+      mkpt: "6871",
+      status: "Present",
+      checkInTime: "09:40 AM",
+      additionalInfo: "Year: 3rd , Location: Room 201",
+    },
+    {
+      mkpt: "6871",
+      status: "Present",
+      checkInTime: "09:40 AM",
+      additionalInfo: "Year: 3rd , Location: Room 201",
     },
   ];
 

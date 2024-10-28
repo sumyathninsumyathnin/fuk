@@ -46,7 +46,7 @@ const Login = () => {
                     </div>
                     <p className='italic font-thin'>Enter your details to get log in to account!</p>
                     <div className=' py-4 my-8 flex flex-col items-center w-full'>
-                        <input type='text' className=' text-gray-500 w-4/6 h-10 rounded-lg pl-4 my-2' placeholder='Enter Email / Phone No' />
+                        <input type='text' className=' text-gray-500 w-4/6 h-10 rounded-lg pl-4 my-2' placeholder='Enter Email' />
                         
                         {/* password form */}
                         <div className='relative w-full flex justify-center items-center'>

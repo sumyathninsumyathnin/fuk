@@ -92,7 +92,7 @@ const Students = () => {
               <tr>
                 <th className="pb-2 border-b-2">MKPT</th>
                 <th className="pb-2 border-b-2">Year</th>
-                <th className="pb-2 border-b-2">Status</th>
+                {/* <th className="pb-2 border-b-2">Status</th> */}
                 <th className="px-7 pb-2 border-b-2">Actions</th>
               </tr>
             </thead>
@@ -101,7 +101,7 @@ const Students = () => {
                 <tr key={student.id} className="rounded-3xl transition duration-100 hover:bg-gray-100">
                   <td className="py-2">{student.mkpt}</td>
                   <td className="py-2">{student.year}</td>
-                  <td className="py-2">{student.status}</td>
+                  {/* <td className="py-2">{student.status}</td> */}
                   <td className="px-7 py-2 flex">
                     <Link to="/dashboard/students/studentdetails">
                       <button className="pr-8 text-blue-500 hover:underline flex items-center mr-4">
@@ -125,55 +125,6 @@ const Students = () => {
                   </td>
                 </tr>
               ))}
-              {/* <tr className="rounded-3xl transition duration-100 hover:bg-gray-100">
-                <td className="py-2">6871</td>
-                <td className="py-2">3rd</td>
-                <td className="py-2">Active</td>
-                <td className="py-2 flex">
-                  <Link to="/dashboard/students/studentdetails">
-                    <button className="text-blue-500 hover:underline flex items-center mr-4">
-                      <IoEyeOutline className="text-xl mr-1" />
-                      View
-                    </button>
-                  </Link>
-                  <Link to="/dashboard/students/editstudent">
-                    <button className="text-green-500 hover:underline flex items-center mr-4">
-                      <IoPencilOutline className="text-xl mr-1" />
-                      Edit
-                    </button>
-                  </Link>
-                  <button className="text-red-500 hover:underline flex items-center">
-                    <IoTrashOutline className="text-xl mr-1" />
-                    Delete
-                  </button>
-                </td>
-              </tr> */}
-              
-
-              {/* Additional row when click see more  */}
-              {/* {handleSeeMoreClick &&(
-                <>
-                  <tr className="rounded-3xl transition duration-100 hover:bg-gray-100">
-                <td className="py-2">6425</td>
-                <td className="py-2">3rd</td>
-                <td className="py-2">Active</td>
-                <td className="py-2 flex">
-                  <button className="text-blue-500 hover:underline flex items-center mr-4">
-                    <IoEyeOutline className="text-xl mr-1" />
-                    View
-                  </button>
-                  <button className="text-green-500 hover:underline flex items-center mr-4">
-                    <IoPencilOutline className="text-xl mr-1" />
-                    Edit
-                  </button>
-                  <button className="text-red-500 hover:underline flex items-center">
-                    <IoTrashOutline className="text-xl mr-1" />
-                    Delete
-                  </button>
-                </td>
-              </tr>
-                </>
-              )} */}
               
 
             </tbody>

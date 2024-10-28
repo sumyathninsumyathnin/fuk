@@ -16,9 +16,9 @@ const Teachers = () => {
   
   const [teachers, setTeachers] = useState([
     { id: 1, email: 'nawlaywar@ucsm.edu.mm', department: 'IC', status: 'Active' },
-    { id: 2, email: 'yuyuwin@ucsm.edu.mm', department: 'FCS', status: 'Active' },
-    { id: 3, email: 'yiyihlaing@ucsm.edu.mm', department: 'IT', status: 'Active' },
-    { id: 4, email: 'naw1@ucsm.edu.mm', department: 'FCS', status: 'Active' },
+    { id: 2, email: 'zinmarwin@ucsm.edu.mm', department: 'FIS', status: 'Active' },
+    { id: 3, email: 'yiyihlaing@ucsm.edu.mm', department: 'FCS', status: 'Active' },
+    { id: 4, email: 'myokhaing@ucsm.edu.mm', department: 'FCS', status: 'Active' },
     { id: 5, email: 'naw2@ucsm.edu.mm', department: 'SE', status: 'Active' },
     { id: 6, email: 'naw3@ucsm.edu.mm', department: 'Math', status: 'Active' },
     { id: 7, email: 'naw4@ucsm.edu.mm', department: 'FCS', status: 'Active' },
@@ -93,7 +93,7 @@ const Teachers = () => {
               <tr>
                 <th className="pb-2 border-b-2">Teacher's Gmail</th>
                 <th className="pb-2 border-b-2">Department</th>
-                <th className="pb-2 border-b-2">Status</th>
+                
                 <th className=" pb-2 border-b-2">Actions</th>
               </tr>
             </thead>
@@ -102,7 +102,7 @@ const Teachers = () => {
                 <tr key={teacher.id} className="rounded-3xl transition duration-100 hover:bg-gray-100">
                   <td className="py-2">{teacher.email}</td>
                   <td className="py-2">{teacher.department}</td>
-                  <td className="py-2">{teacher.status}</td>
+                  
                   <td className=" py-2 flex">
                     <Link to="/dashboard/teachers/teacherdetails">
                       <button className="pr-8 text-blue-500 hover:underline flex items-center mr-4">
